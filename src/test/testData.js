@@ -1,0 +1,1 @@
+export const typewriterData = ['psychological health', 'child care', 'corporate service', 'family service', 'psychiatrist expert'];
