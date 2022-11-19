@@ -26,3 +26,11 @@ export const appointmentValidation = yup.object({
    appointment_time: yup.string().required(),
    gender: yup.string().required(),
 });
+
+
+// banner validation
+export const bannerValidation = yup.object({
+   imgUrl: yup.string().required(),
+   banner_title: yup.string().max(200).required(),
+   banner_detail: yup.string().max(500).required(),
+});

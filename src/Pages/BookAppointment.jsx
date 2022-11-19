@@ -30,7 +30,6 @@ const BookAppointment = () => {
          appointment_time,
          gender,
       } = data;
-      console.log(data);
 
       try {
          const response = await axios.post(
@@ -61,7 +60,7 @@ const BookAppointment = () => {
       } catch (error) {
          swal({
             title: 'Sorry!',
-            text: error.message,
+            text: error.response.data.error,
             icon: 'warning',
             button: 'Ok',
          });
@@ -230,7 +229,6 @@ const BookAppointment = () => {
                            type='date'
                            name='appointment_date'
                            className='form-control block w-full px-3 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0'
-                           placeholder='Text input'
                            {...register('appointment_date')}
                         />
                         <p className='text-[#d00000]'>

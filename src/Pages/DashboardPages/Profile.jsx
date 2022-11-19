@@ -37,11 +37,11 @@ const Profile = () => {
                </table>
             </div>
 
-            <div className='flex justify-center'>
+            {/* <div className='flex justify-center'>
                <button className='font-base font-semibold border-2 border-[#3a0ca3] bg-[#3a0ca3] text-white px-10 py-3 rounded-lg hover:bg-transparent hover:text-[#3a0ca3] duration-150'>
                   EDIT PROFILE
                </button>
-            </div>
+            </div> */}
          </div>
       </div>
    );

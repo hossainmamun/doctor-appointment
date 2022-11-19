@@ -1,7 +1,26 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const ProfessionalList = () => {
-   const professionals = [1, 2, 3, 4, 5, 6];
+   const [banner, setBanner] = useState([]);
+
+   const fetchProfessionals = async () => {
+      try {
+         const response = await axios.get(
+            'http://localhost:4000/api/professional'
+         );
+         if (response.status === 200) {
+            setBanner(response.data);
+         }
+      } catch (error) {
+         console.log(error);
+      }
+   };
+
+   useEffect(() => {
+      fetchProfessionals();
+   }, []);
    return (
       <div className='mt-[150px] min-h-screen space-y-10 mx-10 lg:mx-32 xl:mx-40 2xl:mx-60'>
          <div className='text-center'>
@@ -11,25 +30,31 @@ const ProfessionalList = () => {
          </div>
 
          <div className='grid sm:grid-cols-2 gap-10 w-full'>
-            {professionals.map((professional, index) => {
+            {banner.map((professional, index) => {
+               const {
+                  imgUrl,
+                  professional_name,
+                  professional_designation,
+                  professional_degree,
+               } = professional;
                return (
                   <div
                      className='flex flex-col xl:flex-row rounded-lg bg-white shadow-lg'
                      key={index}>
                      <img
                         className='w-full md:h-auto object-fill xl:w-48 2xl:w-60 rounded-t-lg xl:rounded-l-lg xl:rounded-r-none'
-                        src='https://lifespringcdn.s3.amazonaws.com/wp-content/uploads/2021/12/16a-400x292.jpg'
+                        src={imgUrl}
                         alt=''
                      />
                      <div className='p-6 flex flex-col justify-start space-y-2'>
-                        <h5 className='text-gray-900 text-xl font-medium'>
-                           professional_name
+                        <h5 className='text-gray-900 text-xl font-medium capitalize'>
+                           {professional_name}
                         </h5>
                         <p className='text-gray-700 text-base'>
-                           Role: professional_designation
+                           Role: {professional_designation}
                         </p>
                         <p className='text-gray-600 text-base'>
-                           Degree: professional_degree
+                           Degree: {professional_degree}
                         </p>
                         <div>
                            <Link to='/book-appointment'>

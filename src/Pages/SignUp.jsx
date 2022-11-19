@@ -29,6 +29,7 @@ const SignUp = () => {
                user_name,
                email,
                password,
+               isAdmin: false,
             }
          );
 
@@ -39,20 +40,19 @@ const SignUp = () => {
                icon: 'success',
                button: 'Ok',
             });
-            // set user to local storage
             localStorage.setItem('user', JSON.stringify(response.data));
-            //  update auth context
             dispatch({ type: 'SIGNUP', payload: response.data });
-            // form reset
             reset();
+            setLoading(false);
          }
       } catch (error) {
          swal({
             title: 'Sorry!',
-            text: error.message,
+            text: error.response.data.error,
             icon: 'warning',
             button: 'Ok',
          });
+         setLoading(false);
       }
    };
 
@@ -140,7 +140,7 @@ const SignUp = () => {
                         <input
                            type='submit'
                            className='border-2 border-[#3a0ca3] bg-[#3a0ca3] text-white font-semibold rounded-lg px-4 py-2 hover:bg-transparent hover:text-[#3a0ca3] duration-150 cursor-pointer'
-                           value='SIGN UP'
+                           value={loading ? 'wait...' : 'SIGN UP'}
                            disabled={loading}
                         />
                      </div>

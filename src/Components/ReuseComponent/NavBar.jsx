@@ -4,14 +4,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { authContext } from '../../context/authContext.jsx';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { AiOutlineUser } from 'react-icons/ai';
 
 const NavBar = () => {
    const [open, setOpen] = useState(false);
    const { user, dispatch } = useContext(authContext);
    const logout = () => {
-      // remove user from storage
       localStorage.removeItem('user');
-      // dispatch logout action
       dispatch({ type: 'LOGOUT' });
    };
 
@@ -32,15 +31,13 @@ const NavBar = () => {
 
             <ul
                className={`lg:space-x-6 md:space-x-4 md:flex md:items-center md:pb-0 pb-12 absolute md:static md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
-                  open ? 'top-20' : 'top-[-490px]'
+                  open ? 'top-20 bg-white' : 'top-[-490px]'
                }`}>
                <li className='lg:ml-6 text-base lg:my-0 my-4'>
                   <NavLink
                      to='/'
                      className={({ isActive }) =>
-                        isActive
-                           ? 'text-black font-semibold duration-150'
-                           : 'text-[#3a0ca3] font-semibold'
+                        isActive ? 'text-black duration-150' : 'text-[#3a0ca3]'
                      }>
                      HOME
                   </NavLink>
@@ -49,9 +46,7 @@ const NavBar = () => {
                   <NavLink
                      to='/professional-list'
                      className={({ isActive }) =>
-                        isActive
-                           ? 'text-black font-semibold duration-150'
-                           : 'text-[#3a0ca3] font-semibold'
+                        isActive ? 'text-black duration-150' : 'text-[#3a0ca3]'
                      }>
                      PROFESSIONALS
                   </NavLink>
@@ -62,11 +57,12 @@ const NavBar = () => {
                      <button
                         onClick={() => setOpen(!open)}
                         className='relative space-y-3'>
-                        <div className='flex justify-between items-center capitalize font-semibold'>
+                        <div className='flex justify-between items-center capitalize space-x-1'>
+                           <AiOutlineUser className='text-xl text-[#d00000]' />
                            <span className='text-[#d00000]'>
                               {user?.user_name}
                            </span>
-                           <span>
+                           <span className='text-[#d00000]'>
                               <KeyboardArrowDownIcon />
                            </span>
                         </div>

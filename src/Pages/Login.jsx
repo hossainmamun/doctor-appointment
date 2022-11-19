@@ -22,6 +22,7 @@ const Login = () => {
    const onSubmit = async (data) => {
       const { email, password } = data;
       setLoading(true);
+
       try {
          const response = await axios.post(
             'http://localhost:4000/api/user/login',
@@ -38,20 +39,19 @@ const Login = () => {
                icon: 'success',
                button: 'Ok',
             });
-            // set user to local storage
             localStorage.setItem('user', JSON.stringify(response.data));
-            //  update auth context
             dispatch({ type: 'LOGIN', payload: response.data });
-            // form reset
-            // reset();
+            reset();
+            setLoading(false);
          }
       } catch (error) {
          swal({
             title: 'Sorry!',
-            text: error.message,
+            text: error.response.data.error,
             icon: 'warning',
             button: 'Ok',
          });
+         setLoading(false);
       }
    };
    return (
@@ -120,7 +120,7 @@ const Login = () => {
                         <input
                            type='submit'
                            className='border-2 border-[#3a0ca3] bg-[#3a0ca3] text-white font-semibold rounded-lg px-4 py-2 hover:bg-transparent hover:text-[#3a0ca3] duration-150 cursor-pointer'
-                           value='LOGIN'
+                           value={loading ? 'wait...' : 'LOGIN'}
                            disabled={loading}
                         />
                      </div>

@@ -15,6 +15,7 @@ import { useContext } from 'react';
 import { authContext } from './context/authContext.jsx';
 import AppointmentList from './Pages/DashboardPages/AppointmentList.jsx';
 import EditAppointment from './Pages/DashboardPages/EditAppointment.jsx';
+import MyAppointment from './Pages/DashboardPages/MyAppointment.jsx';
 
 function App() {
    const { user } = useContext(authContext);
@@ -58,6 +59,7 @@ function App() {
                   <Route path='dashboard' element={<DashboardHome />}>
                      <Route index element={<WelcomePage />} />
                      <Route path='profile' element={<Profile />} />
+                     <Route path='my-appointment' element={<MyAppointment/>} />
                      <Route
                         path='appointment-list'
                         element={<AppointmentList />}
