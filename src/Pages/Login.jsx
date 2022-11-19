@@ -25,7 +25,7 @@ const Login = () => {
 
       try {
          const response = await axios.post(
-            'http://localhost:4000/api/user/login',
+            'https://doctor-appointment-api.onrender.com/api/user/login',
             {
                email,
                password,

@@ -24,7 +24,7 @@ const SignUp = () => {
       setLoading(true);
       try {
          const response = await axios.post(
-            'http://localhost:4000/api/user/signup',
+            'https://doctor-appointment-api.onrender.com/api/user/signup',
             {
                user_name,
                email,

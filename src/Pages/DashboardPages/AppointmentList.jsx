@@ -12,7 +12,7 @@ const AppointmentList = () => {
    const fetchAllAppointment = async () => {
       try {
          const response = await axios.get(
-            'http://localhost:4000/api/patient/appointment'
+            'https://doctor-appointment-api.onrender.com/api/patient/appointment'
          );
 
          if (response.status === 200) {
@@ -36,7 +36,7 @@ const AppointmentList = () => {
    const handleAppointmentSearch = async () => {
       try {
          const response = await axios.post(
-            `http://localhost:4000/api/patient/appointment/${appointmentSearch}`
+            `https://doctor-appointment-api.onrender.com/api/patient/appointment/${appointmentSearch}`
          );
          if (response.status === 200) {
             setAllAppointment(response.data);
@@ -55,7 +55,7 @@ const AppointmentList = () => {
    const handleAppointDelete = async (id) => {
       try {
          const response = await axios.delete(
-            `http://localhost:4000/api/patient/appointment/${id}`
+            `https://doctor-appointment-api.onrender.com/api/patient/appointment/${id}`
          );
          if (response.status === 200) {
             swal({

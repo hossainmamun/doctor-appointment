@@ -18,7 +18,7 @@ const UploadBanner = () => {
       setDetail('');
       setImgUrl(null);
       imgInput.value = '';
-      setUploadSuccess(null)
+      setUploadSuccess(null);
    };
 
    // upload banner image to img_bb site
@@ -55,11 +55,14 @@ const UploadBanner = () => {
       e.preventDefault();
 
       try {
-         const response = await axios.post('http://localhost:4000/api/banner', {
-            imgUrl: imgUrl,
-            banner_title: title,
-            banner_detail: detail,
-         });
+         const response = await axios.post(
+            'https://doctor-appointment-api.onrender.com/api/banner',
+            {
+               imgUrl: imgUrl,
+               banner_title: title,
+               banner_detail: detail,
+            }
+         );
          if (response.status === 201) {
             swal({
                title: 'Good Job',

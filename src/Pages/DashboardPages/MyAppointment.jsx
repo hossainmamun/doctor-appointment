@@ -10,7 +10,7 @@ const MyAppointment = () => {
    const getAppointmentByEmail = async () => {
       try {
          const response = await axios.post(
-            `http://localhost:4000/api/patient/appointment/${user.email}`
+            `https://doctor-appointment-api.onrender.com/api/patient/appointment/${user.email}`
          );
          if (response.status === 200) {
             setAppointment(response.data);

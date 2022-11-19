@@ -8,7 +8,7 @@ const ProfessionalList = () => {
    const fetchProfessionals = async () => {
       try {
          const response = await axios.get(
-            'http://localhost:4000/api/professional'
+            'https://doctor-appointment-api.onrender.com/api/professional'
          );
          if (response.status === 200) {
             setBanner(response.data);

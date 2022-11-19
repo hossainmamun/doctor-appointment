@@ -33,7 +33,7 @@ const BookAppointment = () => {
 
       try {
          const response = await axios.post(
-            'http://localhost:4000/api/patient/appointment',
+            'https://doctor-appointment-api.onrender.com/api/patient/appointment',
             {
                patient_name,
                mobile_number,

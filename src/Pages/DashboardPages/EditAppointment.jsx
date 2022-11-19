@@ -13,7 +13,7 @@ const EditAppointment = () => {
    const fetchAnAppointment = async () => {
       try {
          const response = await axios.get(
-            `http://localhost:4000/api/patient/appointment/${appointmentId}`
+            `https://doctor-appointment-api.onrender.com/api/patient/appointment/${appointmentId}`
          );
          if (response.status === 200) {
             setAppointment(response.data);
@@ -45,7 +45,7 @@ const EditAppointment = () => {
       setLoading(true);
       try {
          const response = await axios.patch(
-            `http://localhost:4000/api/patient/appointment/${appointmentId}`,
+            `https://doctor-appointment-api.onrender.com/api/patient/appointment/${appointmentId}`,
             {
                patient_name: appointment.patient_name,
                mobile_number: appointment.mobile_number,

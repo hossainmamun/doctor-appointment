@@ -6,11 +6,13 @@ import { typewriterData } from '../../test/testData.js';
 
 const Banner = () => {
    const [banner, setBanner] = useState([]);
-   const {banner_title, banner_detail, imgUrl} = banner
+   const { banner_title, banner_detail, imgUrl } = banner;
 
    const fetchBanner = async () => {
       try {
-         const response = await axios.get('http://localhost:4000/api/banner');
+         const response = await axios.get(
+            'https://doctor-appointment-api.onrender.com/api/banner'
+         );
          if (response.status === 200) {
             setBanner(response.data[0]);
          }
@@ -18,7 +20,7 @@ const Banner = () => {
          console.log(error);
       }
    };
-   
+
    useEffect(() => {
       fetchBanner();
    }, []);
@@ -51,11 +53,7 @@ const Banner = () => {
          </div>
 
          <div className='w-full lg:w-[45%] pt-10 sm:pt-10 lg:pt-0 px-10 lg:px-0'>
-            <img
-               src={imgUrl}
-               className='w-full'
-               alt=''
-            />
+            <img src={imgUrl} className='w-full' alt='' />
          </div>
       </div>
    );

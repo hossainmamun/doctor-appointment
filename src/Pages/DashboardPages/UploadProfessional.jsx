@@ -58,7 +58,7 @@ const UploadProfessional = () => {
 
       try {
          const response = await axios.post(
-            'http://localhost:4000/api/professional',
+            'https://doctor-appointment-api.onrender.com/api/professional',
             {
                imgUrl: imgUrl,
                professional_name: name,
