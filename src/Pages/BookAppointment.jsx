@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { authContext } from '../context/authContext.jsx';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,6 +7,8 @@ import swal from 'sweetalert';
 import axios from 'axios';
 
 const BookAppointment = () => {
+   const [loading, setLoading] = useState(false);
+   const [error, setError] = useState(null);
    const { user } = useContext(authContext);
 
    const {
@@ -30,6 +32,8 @@ const BookAppointment = () => {
          appointment_time,
          gender,
       } = data;
+      setLoading(true);
+      setError(null);
 
       try {
          const response = await axios.post(
@@ -56,6 +60,8 @@ const BookAppointment = () => {
                button: 'Ok',
             });
             reset();
+            setLoading(false);
+            setError(false);
          }
       } catch (error) {
          swal({
@@ -285,7 +291,8 @@ const BookAppointment = () => {
                      <input
                         type='submit'
                         className='font-base font-semibold border-2 border-[#3a0ca3] bg-[#3a0ca3] text-white px-10 py-3 rounded-md cursor-pointer hover:bg-transparent hover:text-[#3a0ca3] duration-150'
-                        value='REQUEST'
+                        value={loading ? 'WAIT...' : 'REQUEST APPOINTMENT'}
+                        disabled={loading}
                      />
                   </div>
                </form>
